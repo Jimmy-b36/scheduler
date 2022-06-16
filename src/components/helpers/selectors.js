@@ -9,7 +9,7 @@ const getAppointmentsForDay = (state, day) => {
 const getInterview = (state, appointment) => {
   if (!appointment) return null;
 
-  if (appointment.interviewer in state.interviewers) {
+  if (state.interviewers[appointment.interviewer]) {
     return {
       interviewer: { ...state.interviewers[appointment.interviewer] },
       student: appointment.student,
