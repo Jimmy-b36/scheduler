@@ -5,6 +5,7 @@ import InterviewerList from '../InterviewerList';
 export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [student, setStudent] = useState(props.student || '');
+
   const reset = () => {
     setStudent('');
     setInterviewer(null);
@@ -23,7 +24,7 @@ export default function Form(props) {
         <form autoComplete="off" onSubmit={(evt) => evt.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
-            name={student}
+            value={student}
             type="text"
             placeholder="Enter Student Name"
             onChange={(evt) => {
@@ -42,7 +43,13 @@ export default function Form(props) {
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={props.onConfirm}>
+          <Button
+            confirm
+            onClick={() => {
+              props.onConfirm();
+              props.onSave(student, interviewer);
+            }}
+          >
             Save
           </Button>
         </section>
