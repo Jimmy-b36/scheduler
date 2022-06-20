@@ -4,7 +4,11 @@ import 'components/Application.scss';
 import DayList from './DayList';
 import Appointment from 'components/Appointment';
 import Axios from 'axios';
-import { getAppointmentsForDay, getInterview } from './helpers/selectors';
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from './helpers/selectors';
 
 export default function Application(props) {
   useEffect(() => {
@@ -30,17 +34,22 @@ export default function Application(props) {
   });
 
   const appointments = getAppointmentsForDay(state, state.day);
-  const interview = getInterview(state, appointments.interview);
+  const interviewers = getInterviewersForDay(state, state.day);
+
   const setDay = (day) => setState({ ...state, day });
 
-  const schedule = appointments.map((appointment) => (
-    <Appointment
-      key={appointment.id}
-      id={appointment.id}
-      time={appointment.time}
-      interview={interview}
-    />
-  ));
+  const schedule = appointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+        interviewers={interviewers}
+      />
+    );
+  });
 
   return (
     <main className="layout">
