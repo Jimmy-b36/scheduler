@@ -77,7 +77,7 @@ describe('Form', () => {
         interviewers={interviewers}
         onSave={onSave}
         onConfirm={onConfirm}
-        interviewer={1}
+        interviewer={interviewers[0].id}
       />
     );
 
@@ -94,8 +94,11 @@ describe('Form', () => {
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
 
-    expect(onSave).toHaveBeenCalledTimes(1);
-    expect(onSave).toHaveBeenCalledWith('Lydia Miller-Jones', 1);
+    expect(onSave).toHaveBeenCalledTimes(interviewers[0].id);
+    expect(onSave).toHaveBeenCalledWith(
+      'Lydia Miller-Jones',
+      interviewers[0].id
+    );
   });
 
   it('calls onCancel and resets the input field', () => {
