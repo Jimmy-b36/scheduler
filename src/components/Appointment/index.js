@@ -37,7 +37,7 @@ export default function Appointment(props) {
       })
       .catch((err) => {
         console.log('error in save', err);
-        transition(ERROR_SAVE, true);
+        transition(ERROR_SAVE);
       });
   };
 
