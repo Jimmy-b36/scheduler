@@ -33,11 +33,10 @@ describe('Form', () => {
   it('validates that the student name is not blank', () => {
     /* 1. Create the mock onSave function */
     const onSave = jest.fn();
-    const onConfirm = jest.fn();
 
     /* 2. Render the Form with interviewers and the onSave mock function passed as an onSave prop, the name prop should be blank or undefined */
     const { getByText } = render(
-      <Form interviewers={interviewers} onSave={onSave} onConfirm={onConfirm} />
+      <Form interviewers={interviewers} onSave={onSave} />
     );
 
     /* 3. Click the save button */
@@ -50,7 +49,6 @@ describe('Form', () => {
   it('validates that the interviewer cannot be null', () => {
     /* 1. Create the mock onSave function */
     const onSave = jest.fn();
-    const onConfirm = jest.fn();
 
     /* 2. Render the Form with interviewers and the onSave mock function passed as an onSave prop, the interviewer prop should be null */
     const { getByText } = render(
@@ -58,7 +56,6 @@ describe('Form', () => {
         interviewers={interviewers}
         student="Lydia Miller-Jones"
         onSave={onSave}
-        onConfirm={onConfirm}
       />
     );
 
@@ -71,12 +68,11 @@ describe('Form', () => {
 
   it('can successfully save after initially trying to submit an empty student name', () => {
     const onSave = jest.fn();
-    const onConfirm = jest.fn();
+
     const { getByText, getByPlaceholderText, queryByText } = render(
       <Form
         interviewers={interviewers}
         onSave={onSave}
-        onConfirm={onConfirm}
         interviewer={interviewers[0].id}
       />
     );
@@ -103,14 +99,13 @@ describe('Form', () => {
 
   it('calls onCancel and resets the input field', () => {
     const onCancel = jest.fn();
-    const onConfirm = jest.fn();
+
     const onSave = jest.fn();
     const { getByText, getByPlaceholderText, queryByText } = render(
       <Form
         interviewers={interviewers}
         name="Lydia Mill-Jones"
         onSave={onSave}
-        onConfirm={onConfirm}
         onCancel={onCancel}
       />
     );
