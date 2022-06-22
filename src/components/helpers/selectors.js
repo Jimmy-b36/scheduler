@@ -1,3 +1,4 @@
+// retrieve the appointments for the given day
 const getAppointmentsForDay = (state, day) => {
   const dayObj = state.days.find((d) => d.name === day);
 
@@ -6,6 +7,7 @@ const getAppointmentsForDay = (state, day) => {
   return dayObj.appointments.map((id) => state.appointments[id]);
 };
 
+// retrieve the interview for the given appointment
 const getInterview = (state, appointment) => {
   if (!appointment) return null;
 
@@ -17,6 +19,7 @@ const getInterview = (state, appointment) => {
   }
 };
 
+// retrieve the interviewers for the given day
 const getInterviewersForDay = (state, day) => {
   const dayObj = state.days.find((d) => d.name === day);
 

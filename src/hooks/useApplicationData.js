@@ -6,10 +6,14 @@ const useApplicationData = () => {
   const SET_APPLICATION_DATA = 'SET_APPLICATION_DATA';
   const SET_INTERVIEW = 'SET_INTERVIEW';
 
+  //function to count spots
   const countSpots = (state, appointments) => {
+    //find the relevent day object
     const daysObj = state.days.find((d) => d.name === state.day);
 
+    //set spot counter to 0
     let spots = 0;
+    //loop through the day objects appointments and check to see if the inteview is null
     for (const id of daysObj.appointments) {
       const appointment = appointments[id];
       if (!appointment.interview) {
@@ -17,13 +21,16 @@ const useApplicationData = () => {
       }
     }
 
+    //assign a new day object and give it the new spots variable
     const newDay = { ...daysObj, spots };
 
+    //map the new state to days variable
     const days = state.days.map((d) => (d.name === state.day ? newDay : d));
 
     return days;
   };
 
+  //use reducer as it is a complex state
   function reducer(state, action) {
     switch (action.type) {
       case SET_DAY:
@@ -68,6 +75,7 @@ const useApplicationData = () => {
     interviewers: {},
   });
 
+  //get requests
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -85,16 +93,19 @@ const useApplicationData = () => {
     });
   }, []);
 
+  //set the day state
   const setDay = (day) => {
     dispatch({ type: SET_DAY, value: day });
   };
 
+  //set the interview state and call function to count spots
   const bookInterview = (id, interview) => {
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
       dispatch({ type: SET_INTERVIEW, id, interview, countSpots });
     });
   };
 
+  //set the interview state when cancelling an interview
   const cancelInterview = (id) => {
     return axios
       .delete(`/api/appointments/${id}`)

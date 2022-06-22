@@ -24,6 +24,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  //book the interview and transition to the show mode
   const save = (name, interviewer) => {
     const interview = {
       student: name,
@@ -37,12 +38,14 @@ export default function Appointment(props) {
       .then(() => {
         transition(SHOW);
       })
+      //if there is an error, transition to the error mode
       .catch((err) => {
         console.log('error in save', err);
         transition(ERROR_SAVE);
       });
   };
 
+  //delete the interview and transition to the empty mode
   const confirmDelete = () => {
     transition(DELETING, true);
 
@@ -51,6 +54,7 @@ export default function Appointment(props) {
       .then(() => {
         transition(EMPTY);
       })
+      //if there is an error, transition to the error mode
       .catch((err) => {
         console.log('error in delete', err);
         transition(ERROR_DELETE, true);
