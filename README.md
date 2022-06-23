@@ -30,7 +30,7 @@ interviews are persistant and are hosted on a local server.
 ## Setup
 
 - Install dependencies with `npm install`.
-- Go to <https://github.com/lighthouse-labs/scheduler-api> and follow readme to download api
+- Go to <https://github.com/lighthouse-labs/scheduler-api> fork, clone and follow readme to download api
 
 ## Running Webpack Development Server
 
