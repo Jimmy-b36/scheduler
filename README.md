@@ -7,11 +7,23 @@ interviews are persistant and are hosted on a local server.
 
 ## Screenshots
 
+### Main page
+
+![Main page](https://github.com/Jimmy-b36/scheduler/blob/master/public/docs/Main-page.png)
+
+### Add new interview
+
 ![Add new interview](https://github.com/Jimmy-b36/scheduler/blob/master/public/docs/add-new-interview.gif)
+
+### Delete interview
 
 ![Delete Interview](https://github.com/Jimmy-b36/scheduler/blob/master/public/docs/delete-interview.gif)
 
+### Edit interview
+
 ![Edit Interview](https://github.com/Jimmy-b36/scheduler/blob/master/public/docs/edit-interview.gif)
+
+### Persistant data
 
 ![Show persistance](https://github.com/Jimmy-b36/scheduler/blob/master/public/docs/show-persistance.gif)
 
